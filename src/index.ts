@@ -1,6 +1,6 @@
 
-import { GithubService } from './service/github';
-import { UserService } from './service/user';
+import { GithubService } from './services/github';
+import { UserService } from './services/user';
 
 const [, , command, ...args] = process.argv;
 

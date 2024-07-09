@@ -5,10 +5,10 @@
 
 
 ## Features
-1. User authentication via Microsoft outlook.
-2. Store user profile and emails via Elastic Search indexes (user  - email_messages).
-3. Sync user emails message in Elastic Search index (email_messages).
-4. Basic Client UI Interface for authentication and email messages read.
+1. 
+2. 
+3. 
+4. 
 
 ## Features Explaination
 
