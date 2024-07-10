@@ -5,12 +5,17 @@ import { GithubRepo, GithubUser, GithubUserLanguages } from "../types/github";
 export class UserService {
   constructor(){}
 
+  /**
+   * Add user information, user languages, and user repositories to the respective
+   * database tables (users, user_languages, and user_repositories).
+  */
   async addUser(
     user: GithubUser,
     languages: string[],
     repositories: GithubRepo[]
-  ) {
-
+  ): Promise <GithubUser> {
+    
+    // Insert user information into the users table in the database
     await db.one(
       `INSERT INTO users (
         login, id, avatar_url, gravatar_id, url, html_url, followers_url, 
@@ -31,6 +36,7 @@ export class UserService {
       }
     );
 
+    // Insert user languages into the user_languages table in the database
     const languageQueries = languages.map(lang => 
       db.none(`INSERT INTO user_languages (user_id, language) VALUES (\${user_id}, \${language})`, {
         user_id: user.id,
@@ -40,6 +46,7 @@ export class UserService {
     
     await Promise.all(languageQueries);
     
+    // Insert user repositories into the user_repositories table in the database
     const repositoryQueries = repositories.map(repo =>
       db.none(
         `INSERT INTO user_repositories (
@@ -82,5 +89,52 @@ export class UserService {
       ...user,
       languages: languages
     }
+  }
+
+  /**
+   * Retrieve all users from the database.
+  */
+  async getAllUser(): Promise<GithubUser[]> {
+    return db.any(`
+      SELECT 
+      users.*, 
+      array_agg(user_languages.language) AS languages 
+      FROM users JOIN user_languages ON users.id = user_languages.user_id 
+      GROUP BY users.id`
+    );
+  }
+
+  /**
+   * Retrieve all users from the database based 
+   * on their location.
+  */
+  async getAllUserbyLocation(location: string): Promise<GithubUser[]> {
+    return db.any(`
+      SELECT 
+      users.*, 
+      array_agg(user_languages.language) AS languages 
+      FROM users JOIN user_languages ON users.id = user_languages.user_id 
+      WHERE users.location ILIKE \${location}
+      GROUP BY users.id`, {
+        location: `%${location}%`
+      }
+    );
+  }
+
+  /**
+   * Retrieve all users from the database based 
+   * on their programmig languages.
+  */
+  async getAllUserbyLanguage(language: string): Promise<GithubUser[]> {
+    return db.any(`
+      SELECT 
+      users.*, 
+      array_agg(user_languages.language) AS languages 
+      FROM users JOIN user_languages ON users.id = user_languages.user_id 
+      WHERE user_languages.language ILIKE \${language}
+      GROUP BY users.id`, {
+        language: `%${language}%`
+      }
+    );
   }
 }

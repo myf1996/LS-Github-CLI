@@ -30,6 +30,7 @@ export interface GithubUser {
   following: number;
   created_at: Date;
   updated_at: Date;
+  languages: string[],
 }
 
 export interface GithubUserLanguages {
