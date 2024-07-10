@@ -81,3 +81,8 @@ CREATE TABLE user_repositories (
   default_branch VARCHAR(100),
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+-- Create indexes
+CREATE INDEX user_repositories_name_index ON user_repositories(name);
+CREATE INDEX user_repositories_full_name_index ON user_repositories(full_name);
+CREATE INDEX user_repositories_user_id_index ON user_repositories(user_id);
