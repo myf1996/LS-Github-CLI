@@ -1,4 +1,9 @@
-import { UserService } from "../services/user";
+import { 
+  addUser, 
+  getAllUser, 
+  getAllUserbyLanguage, 
+  getAllUserbyLocation 
+} from "../services/user";
 import db from "../database/dbConfig";
 import { mockLanguages, mockRepos, mockUser } from "./__mocks__/types";
 
@@ -10,16 +15,14 @@ jest.mock("../database/dbConfig", () => ({
 }));
 
 describe("UserService", () => {
-  let userService: UserService;
 
   beforeEach(() => {
-    userService = new UserService();
     jest.clearAllMocks();
   });
 
   it("should add a user, languages, and repositories", async () => {
     
-    await userService.addUser(mockUser, mockLanguages, mockRepos);
+    await addUser(mockUser, mockLanguages, mockRepos);
 
     expect(db.one).toHaveBeenCalledWith(
       expect.any(String), 
@@ -53,7 +56,7 @@ describe("UserService", () => {
 
     (db.any as jest.Mock).mockResolvedValue(mockDbResult);
     
-    const result = await userService.getAllUser();
+    const result = await getAllUser();
     
     expect(result).toEqual(mockDbResult);
   });
@@ -65,7 +68,7 @@ describe("UserService", () => {
 
     (db.any as jest.Mock).mockResolvedValue(mockDbResult);
 
-    const result = await userService.getAllUserbyLocation("Portugal");
+    const result = await getAllUserbyLocation("Portugal");
     
     expect(db.any).toHaveBeenCalledWith(
       expect.stringContaining("WHERE users.location ILIKE"), 
@@ -81,7 +84,7 @@ describe("UserService", () => {
 
     (db.any as jest.Mock).mockResolvedValue(mockDbResult);
 
-    const result = await userService.getAllUserbyLanguage("JavaScript");
+    const result = await getAllUserbyLanguage("JavaScript");
 
     expect(db.any).toHaveBeenCalledWith(
       expect.stringContaining("WHERE user_languages.language ILIKE"), 

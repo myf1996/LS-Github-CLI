@@ -1,5 +1,8 @@
 import axios from "axios";
-import { GithubService } from "../services/github";
+import { 
+  getUser, 
+  getUserLanguagesAndRepos 
+} from "../services/github";
 import { GithubUserLanguageAndRepo } from "../types/github";
 import {
   mockRepoLanguages,
@@ -11,16 +14,15 @@ jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe("GithubService", () => {
-  let githubService: GithubService;
 
   beforeAll(() => {
-    githubService = new GithubService();
+    jest.clearAllMocks();
   });
 
   it("should fetch user information from GitHub", async () => {
     mockedAxios.get.mockResolvedValueOnce({ data: mockUser });
 
-    const result = await githubService.getUser("myf1996");
+    const result = await getUser("myf1996");
 
     expect(result).toEqual(mockUser);
     expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -34,7 +36,7 @@ describe("GithubService", () => {
       .mockResolvedValueOnce({ data: mockRepoLanguages });
 
     const result: GithubUserLanguageAndRepo =
-      await githubService.getUserLanguagesAndRepos("myf1996");
+      await getUserLanguagesAndRepos("myf1996");
 
     expect(result.languages).toEqual(["JavaScript", "TypeScript"]);
     expect(result.repos).toEqual(mockRepos);
