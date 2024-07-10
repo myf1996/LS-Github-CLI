@@ -1,11 +1,5 @@
-// @ts-check
-
-// import eslint from '@eslint/js';
 import globals from "globals";
-// import pluginJs from "@eslint/js";
-// import tseslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
-
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 
@@ -21,7 +15,6 @@ export default tseslint.config(
       },
     },
     plugins: {
-      // "@typescript-eslint": tseslint,
     },
     rules: {
       "max-len": ["error", { code: 80 }],

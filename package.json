@@ -7,7 +7,11 @@
   "scripts": {
     "test": "jest",
     "lint": "npx eslint .",
-    "migrate": "npx tsx src/database/migrate.ts"
+    "migrate": "npx tsx src/database/migrate.ts",
+    "add-user": "npx tsx src/index.ts add-user",
+    "get-users": "npx tsx src/index.ts get-users",
+    "get-users-by-location": "npx tsx src/index.ts get-users-by-location",
+    "get-users-by-language": "npx tsx src/index.ts get-users-by-language"
   },
   "keywords": [
     "lovelystay",
