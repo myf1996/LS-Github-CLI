@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { GithubUser, GithubUserLanguageAndRepo } from '../types/github';
-import config from '../config';
+import axios from "axios";
+import { GithubUser, GithubUserLanguageAndRepo } from "../types/github";
+import config from "../config";
 
 export class GithubService {
   private baseurl: string;
@@ -12,7 +12,9 @@ export class GithubService {
   /**
    * Fetch user information from the GitHub API.
   */
-  async getUser(username: string): Promise <GithubUser> {
+  async getUser(
+    username: string
+  ) : Promise <GithubUser> {
     const response = await axios.get(`${this.baseurl}/users/${username}`);
     return response.data;
   };
@@ -22,7 +24,9 @@ export class GithubService {
    * programming languages used in each repository by using the `languages_url` 
    * attribute of each repository.
   */
-  async getUserLanguagesAndRepos(username: string): Promise <GithubUserLanguageAndRepo> {
+  async getUserLanguagesAndRepos(
+    username: string
+  ) : Promise <GithubUserLanguageAndRepo> {
     const repos = await axios.get(`${this.baseurl}/users/${username}/repos`);
     const languages = new Set<string>();
     for (const repo of repos.data) {

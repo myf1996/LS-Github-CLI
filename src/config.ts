@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import "dotenv/config";
 
 const config = {
   database: {
@@ -9,8 +9,8 @@ const config = {
     DB_PORT: 5432,
   },
   github: {
-    baseurl: process.env.GITHUB_BASE_URL || 'https://api.github.com',
-  }
-}
+    baseurl: process.env.GITHUB_BASE_URL || "https://api.github.com",
+  },
+};
 
 export default config;

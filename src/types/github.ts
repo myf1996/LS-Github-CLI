@@ -15,13 +15,13 @@ export interface GithubUser {
   events_url: string;
   received_events_url: string;
   type: string;
-  site_admin: string;
+  site_admin: boolean;
   name: string;
   company: string;
   blog: string;
   location: string;
   email?: string | null;
-  hireable?: string | null;
+  hireable?: boolean | null;
   bio: string;
   twitter_username?: string | null;
   public_repos: number;
@@ -106,9 +106,9 @@ export interface GithubRepo {
   labels_url: string;
   releases_url: string;
   deployments_url: string;
-  created_at: string;
-  updated_at: string;
-  pushed_at: string;
+  created_at: Date;
+  updated_at: Date;
+  pushed_at: Date;
   git_url: string;
   ssh_url: string;
   clone_url: string;
@@ -140,6 +140,7 @@ export interface GithubRepo {
   open_issues: number;
   watchers: number;
   default_branch: string;
+  user_id: number;
 }
 
 export interface GithubUserLanguageAndRepo {
