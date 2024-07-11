@@ -1,0 +1,26 @@
+language: node_js
+
+node_js:
+  - "18.14.0"
+
+jobs:
+  include:
+    - stage: 'Tests'
+      name: 'Build the app'
+      script:
+        - echo "Running"
+
+cache:
+  - bundler
+  - npm
+  - pip
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install build-essential
+  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  - export NVM_DIR="$HOME/.nvm"
+  - [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  - nvm install 18.14.0
+  - nvm use 18.14.0
+  - node --version

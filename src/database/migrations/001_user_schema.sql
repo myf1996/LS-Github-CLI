@@ -32,3 +32,7 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Create indexes
+CREATE INDEX users_login_index ON users(login);
+CREATE INDEX users_name_index ON users(name);
