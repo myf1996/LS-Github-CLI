@@ -1,17 +1,27 @@
 <h1 align="center">LS Github CLI</h1>
 
 ## Description
-
+This project is a GitHub User Management Service designed to fetch and store GitHub user information, including their repositories and programming languages. The service provides a set of commands to add users, retrieve user details, and filter users based on location and programming languages.
 
 
 ## Features
-1. 
-2. 
-3. 
-4. 
+1. **Fetch User Information**: Retrieve detailed user information from GitHub's REST API.
+2. **Store User Data**: Persist user details, repositories, and programming languages in a PostgreSQL database.
+3. **Filter Users**: Query users by location and programming languages.
+4. **Command**.
+    - ```npm run add-user <username>```: Add a GitHub user to the database.
+    -  ```npm run get-users```: Retrieve all users from the database.
+    -  ```npm run get-users-by-location <location>```: Retrieve users based on a specific location.
+    -  ```npm run get-users-by-language <language>```: Retrieve users based on their programming language
 
-## Features Explaination
-
+## Technologies Use
+1. **NodeJS**: JavaScript runtime environment.
+2. **TypeScript**: TypeScript for type safety and improved developer experience.
+3. **PostgreSQL**: Relational database for storing user data.
+4. **pg-promise**: PostgreSQL interface for Node.js.
+5. **Docker**: Containerization for easy setup and deployment.
+7. **Jest**: Testing framework for unit tests.
+8. **ESLint**: Linter for maintaining code quality.
 
 ## Pre-requisite
 
@@ -20,19 +30,23 @@ node -v 18.14.0
 npm -v 9.3.1
 ```
 
-## Setup
+## Getting Started
 1. Clone the repository.
-2. Create Environment variable ```.env``` file
+2. npm install
+3. Set up the database
+    - Ensure Docker is installed and running.
+    - Start the PostgreSQL container.
+      - ```docker-compose up -d```
+    - ```npm run migrate```
+4. Set up ```.env``` file
 ```bash
-$ DB_HOST=
-$ DB_USERNAME=
-$ DB_PASSWORD=
-$ DB_DATABASE_NAME=
-$ DB_PORT=
-$ GITHUB_BASE_URL=
+DB_HOST=
+DB_USERNAME=
+DB_PASSWORD=
+DB_DATABASE_NAME=
+DB_PORT=
+GITHUB_BASE_URL=
 ```
-3. npm install
-
 
 ## Test
 ```
@@ -61,14 +75,19 @@ project/
 │   │   ├── user.ts
 │   ├── config.ts
 │   └── index.ts
-├── eslint.config.mjs
-├── package.json
 ├── .env
 ├── .env.example
-├── .mocharc
+├── .gitignore
+├── docker-compose.yml
+├── eslint.config.js
+├── jest.config.ts
+├── package.json
+├── README.md
 └── tsconfig.json
 ```
 
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
 
 ## Stay in touch
 
