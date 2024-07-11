@@ -26,7 +26,7 @@ This project is a GitHub User Management Service designed to fetch and store Git
 ## Pre-requisite
 
 ```bash
-node -v 18.14.0
+node -v 18.18.0
 npm -v 9.3.1
 docker -v 24.0.2 (optional)
 ```
