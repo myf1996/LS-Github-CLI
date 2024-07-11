@@ -1,0 +1,21 @@
+language: node_js
+
+node_js:
+  - "18.14"
+
+jobs:
+  include:
+    - stage: 'Tests'
+      name: 'Build the app'
+      script:
+        - echo "Running"
+
+cache:
+  - bundler
+  - npm
+  - pip
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install build-essential
+  
