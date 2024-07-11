@@ -34,5 +34,5 @@ CREATE TABLE users (
 );
 
 -- Create indexes
-CREATE INDEX idx_users_login ON users(login);
-CREATE INDEX idx_users_name ON users(name);
+CREATE INDEX users_login_index ON users(login);
+CREATE INDEX users_name_index ON users(name);

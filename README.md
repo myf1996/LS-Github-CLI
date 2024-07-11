@@ -1,4 +1,4 @@
-<h1 align="center">LS Github CLI</h1>
+<h1 align="center">Github User Management Service</h1>
 
 ## Description
 This project is a GitHub User Management Service designed to fetch and store GitHub user information, including their repositories and programming languages. The service provides a set of commands to add users, retrieve user details, and filter users based on location and programming languages.
@@ -19,7 +19,7 @@ This project is a GitHub User Management Service designed to fetch and store Git
 2. **TypeScript**: TypeScript for type safety and improved developer experience.
 3. **PostgreSQL**: Relational database for storing user data.
 4. **pg-promise**: PostgreSQL interface for Node.js.
-5. **Docker**: Containerization for easy setup and deployment.
+5. **Docker**: Containerization for easy dataabase setup and deployment.
 7. **Jest**: Testing framework for unit tests.
 8. **ESLint**: Linter for maintaining code quality.
 
@@ -28,6 +28,7 @@ This project is a GitHub User Management Service designed to fetch and store Git
 ```bash
 node -v 18.14.0
 npm -v 9.3.1
+docker -v 24.0.2 (optional)
 ```
 
 ## Getting Started
@@ -46,12 +47,16 @@ DB_PASSWORD=
 DB_DATABASE_NAME=
 DB_PORT=
 GITHUB_BASE_URL=
+GITHUB_TOKEN=
 ```
 
 ## Test
 ```
 $ npm run test
 ```
+## Rate Limit Note
+- **Unauthorized Requests**: GitHub's REST API has a rate limit of 60 requests per hour for unauthorized requests.
+- **Authorized Requests**: For authorized requests, the rate limit increases to 5,000 requests per hour.
 
 ## Project Structure
 ```
